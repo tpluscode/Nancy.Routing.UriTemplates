@@ -11,6 +11,6 @@ namespace Nancy.Routing.UriTemplate
         /// <summary>
         /// Gets the URI Template routes.
         /// </summary>
-        IEnumerable<Route> TemplateRoutes { get; }
+        IEnumerable<TemplateRoute> TemplateRoutes { get; }
     }
 }

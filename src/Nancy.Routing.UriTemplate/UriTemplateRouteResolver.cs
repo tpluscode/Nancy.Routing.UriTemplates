@@ -43,7 +43,7 @@ namespace Nancy.Routing.UriTemplate
             var matches = (from module in this.moduleCatalog.GetAllModules(context).OfType<IUriTemplateRouting>()
                            from route in module.TemplateRoutes
                            where route.Description.Method.Equals(context.Request.Method, StringComparison.OrdinalIgnoreCase)
-                           let match = new TunnelVisionLabs.Net.UriTemplate(route.Description.Path).Match(uri)
+                           let match = route.Template.Match(uri)
                            where match != null
                            select new
                            {

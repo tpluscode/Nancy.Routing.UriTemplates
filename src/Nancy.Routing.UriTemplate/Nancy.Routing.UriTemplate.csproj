@@ -67,6 +67,8 @@
   <ItemGroup>
     <Compile Include="IUriTemplateRouting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateRoute.cs" />
+    <Compile Include="TemplateRoute`1.cs" />
     <Compile Include="UriTemplateModule.cs" />
     <Compile Include="UriTemplateRouteResolver.cs" />
   </ItemGroup>
