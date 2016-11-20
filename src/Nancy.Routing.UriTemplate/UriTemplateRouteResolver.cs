@@ -4,6 +4,10 @@ using Nancy.Configuration;
 
 namespace Nancy.Routing.UriTemplate
 {
+    /// <summary>
+    /// Uses URI Templates (RFC6570) to resolve route to execute
+    /// </summary>
+    /// <seealso cref="Nancy.Routing.IRouteResolver" />
     public class UriTemplateRouteResolver : IRouteResolver
     {
         private readonly IRouteResolver inner;
@@ -11,6 +15,13 @@ namespace Nancy.Routing.UriTemplate
         private readonly INancyModuleBuilder builder;
         private readonly GlobalizationConfiguration globalizationConfiguraton;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UriTemplateRouteResolver"/> class.
+        /// </summary>
+        /// <param name="inner">The inner.</param>
+        /// <param name="moduleCatalog">The module catalog.</param>
+        /// <param name="builder">The builder.</param>
+        /// <param name="environment">The environment.</param>
         public UriTemplateRouteResolver(DefaultRouteResolver inner, INancyModuleCatalog moduleCatalog, INancyModuleBuilder builder, INancyEnvironment environment)
         {
             this.inner = inner;
@@ -19,6 +30,13 @@ namespace Nancy.Routing.UriTemplate
             this.globalizationConfiguraton = environment.GetValue<GlobalizationConfiguration>();
         }
 
+        /// <summary>
+        /// Gets the route, and the corresponding parameter dictionary from the URL
+        /// </summary>
+        /// <param name="context">Current context</param>
+        /// <returns>
+        /// A <see cref="T:Nancy.Routing.ResolveResult" /> containing the resolved route information.
+        /// </returns>
         public ResolveResult Resolve(NancyContext context)
         {
             var uri = new Uri(Uri.EscapeUriString(context.Request.Path + context.Request.Url.Query), UriKind.Relative);

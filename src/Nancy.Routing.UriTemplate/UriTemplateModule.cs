@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +13,8 @@ namespace Nancy.Routing.UriTemplate
         {
         }
 
-        protected UriTemplateModule(string modulePath) : base(modulePath)
+        protected UriTemplateModule(string modulePath)
+            : base(modulePath)
         {
         }
 
@@ -36,7 +37,7 @@ namespace Nancy.Routing.UriTemplate
 
         public override void Get<T>(string path, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition = null, string name = null)
         {
-            this.AddRoute("GET", new TunnelVisionLabs.Net.UriTemplate(GetFullPath(path)), action, condition, name);
+            this.AddRoute("GET", new TunnelVisionLabs.Net.UriTemplate(this.GetFullPath(path)), action, condition, name);
         }
 
         protected void AddRoute<T>(string method, TunnelVisionLabs.Net.UriTemplate template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition, string name)
@@ -62,7 +63,7 @@ namespace Nancy.Routing.UriTemplate
             var separator = "/";
             if (relativePath.StartsWith("{/"))
             {
-                separator = String.Empty;
+                separator = string.Empty;
             }
 
             return string.Concat("/", parentPath, separator, relativePath);
