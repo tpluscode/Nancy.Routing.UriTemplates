@@ -78,7 +78,7 @@
     <Compile Include="TestModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nancy.Routing.UriTemplate\Nancy.Routing.UriTemplate.csproj">
+    <ProjectReference Include="..\src\Nancy.Routing.UriTemplate\Nancy.Routing.UriTemplate.csproj">
       <Project>{52A6EE50-ED4D-4F90-A4B3-270CF971826F}</Project>
       <Name>Nancy.Routing.UriTemplate</Name>
     </ProjectReference>
