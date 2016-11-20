@@ -1,0 +1,16 @@
+type project
+id Nancy.Routing.UriTemplate
+include-pdbs true
+excludeddependencies
+  GitVersionTask
+dependencies
+  Nancy >= LOCKEDVERSION
+  TunnelVisionLabs.Net.UriTemplate >= LOCKEDVERSION
+tags
+  nancy routing uri template rfc6570
+copyright 
+  Copyright 2016 Tomasz Pluskiewicz
+licenseUrl
+  http://www.opensource.org/licenses/mit-license.php
+projectUrl
+  http://github.org/tpluscode/Nancy.Routing.UriTemplate

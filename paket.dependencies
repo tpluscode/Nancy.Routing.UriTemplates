@@ -3,6 +3,7 @@ source https://www.nuget.org/api/v2/
 nuget Arachne.Uri.Template 3.0.0 framework: >= net45
 nuget Earl 0.1.0.0 framework: >= net45
 nuget FSharp.Core 4.0.0.1 framework: >= net45
+nuget GitVersionTask
 nuget JsonLD.Entities 0.3.3 framework: >= net45
 nuget Microsoft.CodeDom.Providers.DotNetCompilerPlatform 1.0.0
 nuget Microsoft.Owin.Host.HttpListener 3.0.1 framework: >= net46
