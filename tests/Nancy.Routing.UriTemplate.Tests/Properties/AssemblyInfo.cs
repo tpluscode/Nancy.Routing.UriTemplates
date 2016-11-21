@@ -2,11 +2,11 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Nancy.Routing.UriTemplate.Test")]
+[assembly: AssemblyTitle("Nancy.Routing.UriTemplates.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Nancy.Routing.UriTemplate.Test")]
+[assembly: AssemblyProduct("Nancy.Routing.UriTemplates.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

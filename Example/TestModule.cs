@@ -7,27 +7,30 @@ namespace Example
     {
         public TestModule() : base("/base/path/")
         {
-            GetByTemplate("{/seg1}/{.seg2,seg3}{/page}{?filter}", _ =>
+            using (Templates)
             {
-                return Response.AsJson(new
+                Get("{/seg1}/{.seg2,seg3}{/page}{?filter}", _ =>
                 {
-                    _.seg1,
-                    _.seg2,
-                    _.seg3,
-                    _.page,
-                    _.filter
+                    return Response.AsJson(new
+                    {
+                        _.seg1,
+                        _.seg2,
+                        _.seg3,
+                        _.page,
+                        _.filter
+                    });
                 });
-            });
-            GetByTemplate("/literal/{.seg2,seg3}{/page}{?filter}", _ =>
-            {
-                return Response.AsJson(new
+                Get("/literal/{.seg2,seg3}{/page}{?filter}", _ =>
                 {
-                    _.articles,
-                    _.dupa,
-                    _.page,
-                    _.filter
+                    return Response.AsJson(new
+                    {
+                        _.articles,
+                        _.dupa,
+                        _.page,
+                        _.filter
+                    });
                 });
-            });
+            }
         }
     }
 }

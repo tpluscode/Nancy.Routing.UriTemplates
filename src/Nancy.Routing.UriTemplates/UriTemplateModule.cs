@@ -9,6 +9,8 @@ namespace Nancy.Routing.UriTemplate
     {
         private readonly IList<TemplateRoute> templateRoutes = new List<TemplateRoute>();
 
+        private bool isUsingTemplates;
+
         protected UriTemplateModule()
         {
         }
@@ -20,24 +22,18 @@ namespace Nancy.Routing.UriTemplate
 
         public IEnumerable<TemplateRoute> TemplateRoutes => this.templateRoutes;
 
-        public virtual void GetByTemplate(string template, Func<dynamic, object> action, Func<NancyContext, bool> condition = null, string name = null)
-        {
-            this.GetByTemplate<object>(template, action, condition, name);
-        }
+        public IDisposable Templates => new UsingTemplatesToggle(this);
 
-        public virtual void GetByTemplate<T>(string template, Func<dynamic, T> action, Func<NancyContext, bool> condition = null, string name = null)
+        public override void Get<T>(string template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition = null, string name = null)
         {
-            this.GetByTemplate(template, args => Task.FromResult(action((DynamicDictionary)args)), condition, name);
-        }
-
-        public virtual void GetByTemplate<T>(string template, Func<dynamic, Task<T>> action, Func<NancyContext, bool> condition = null, string name = null)
-        {
-            this.GetByTemplate(template, (args, ct) => action((DynamicDictionary)args), condition, name);
-        }
-
-        public virtual void GetByTemplate<T>(string template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition = null, string name = null)
-        {
-            this.AddTemplateRoute("GET", this.GetAbsoluteTemplate(template), action, condition, name);
+            if (this.isUsingTemplates)
+            {
+                this.AddTemplateRoute("GET", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+            else
+            {
+                this.AddRoute("GET", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
         }
 
         protected void AddTemplateRoute<T>(string method, string template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition, string name)
@@ -67,6 +63,22 @@ namespace Nancy.Routing.UriTemplate
             }
 
             return string.Concat("/", parentPath, separator, relativePath);
+        }
+
+        private class UsingTemplatesToggle : IDisposable
+        {
+            private readonly UriTemplateModule uriTemplateModule;
+
+            public UsingTemplatesToggle(UriTemplateModule uriTemplateModule)
+            {
+                uriTemplateModule.isUsingTemplates = true;
+                this.uriTemplateModule = uriTemplateModule;
+            }
+
+            public void Dispose()
+            {
+                this.uriTemplateModule.isUsingTemplates = false;
+            }
         }
     }
 }

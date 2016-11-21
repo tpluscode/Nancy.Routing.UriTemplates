@@ -1,5 +1,8 @@
 NUGET
   remote: https://www.nuget.org/api/v2
+    FluentAssertions (4.17)
+      NETStandard.Library (>= 1.6) - framework: >= netstandard13
+      System.Reflection.TypeExtensions (>= 4.1) - framework: >= netstandard13
     GitVersionTask (3.6.4)
     JsonLd.Entities (0.3.3) - framework: >= net45
       json-ld.net (>= 1.0.5)

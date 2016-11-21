@@ -7,7 +7,7 @@ before_build:
   - ps: gitversion /l console /output buildserver
 
 build:
-  project: Nancy.Routing.UriTemplate.sln
+  project: Nancy.Routing.UriTemplates.sln
 
 configuration: Release
 
@@ -15,7 +15,7 @@ after_build:
   - .paket\paket.exe pack output nugets include-referenced-projects version %GitVersion_NuGetVersion%
   
 after_test:
-  - .\packages\OpenCover\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"tests\Nancy.Routing.UriTemplate.Test\bin\Release\Nancy.Routing.UriTemplate.Test.dll -noshadow -appveyor" -returntargetcode -filter:"+[Nancy.Routing.UriTemplate*]* -[Nancy.Routing.UriTemplate.Test*]* -[Test*]*" -hideskipped:All -output:.\coverage.xml
+  - .\packages\OpenCover\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"tests\Nancy.Routing.UriTemplates.Tests\bin\Release\Nancy.Routing.UriTemplates.Test.dll -noshadow -appveyor" -returntargetcode -filter:"+[Nancy.Routing.UriTemplates*]* -[Nancy.Routing.UriTemplates.Tests*]* -[Test*]*" -hideskipped:All -output:.\coverage.xml
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
   - codecov -f "coverage.xml"
