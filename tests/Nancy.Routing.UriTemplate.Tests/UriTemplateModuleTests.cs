@@ -1,5 +1,4 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Nancy.Routing.UriTemplate;
 using Xunit;
 
@@ -37,6 +36,84 @@ namespace Nancy.Routing.UriTemplates.Tests
             using (this.module.Templates)
             {
                 this.module.Get("/", (o, o2) => null);
+            }
+
+            // then
+            this.module.TemplateRoutes.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void When_using_templates_Adds_template_route_for_POST()
+        {
+            // when
+            using (this.module.Templates)
+            {
+                this.module.Post("/", (o, o2) => null);
+            }
+
+            // then
+            this.module.TemplateRoutes.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void When_using_templates_Adds_template_route_for_OPTIONS()
+        {
+            // when
+            using (this.module.Templates)
+            {
+                this.module.Options("/", (o, o2) => null);
+            }
+
+            // then
+            this.module.TemplateRoutes.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void When_using_templates_Adds_template_route_for_PATCH()
+        {
+            // when
+            using (this.module.Templates)
+            {
+                this.module.Patch("/", (o, o2) => null);
+            }
+
+            // then
+            this.module.TemplateRoutes.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void When_using_templates_Adds_template_route_for_DELETE()
+        {
+            // when
+            using (this.module.Templates)
+            {
+                this.module.Delete("/", (o, o2) => null);
+            }
+
+            // then
+            this.module.TemplateRoutes.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void When_using_templates_Adds_template_route_for_HEAD()
+        {
+            // when
+            using (this.module.Templates)
+            {
+                this.module.Head("/", (o, o2) => null);
+            }
+
+            // then
+            this.module.TemplateRoutes.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void When_using_templates_Adds_template_route_for_PUT()
+        {
+            // when
+            using (this.module.Templates)
+            {
+                this.module.Put("/", (o, o2) => null);
             }
 
             // then

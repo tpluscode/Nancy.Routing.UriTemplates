@@ -36,6 +36,78 @@ namespace Nancy.Routing.UriTemplate
             }
         }
 
+        public override void Put<T>(string template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition = null, string name = null)
+        {
+            if (this.isUsingTemplates)
+            {
+                this.AddTemplateRoute("PUT", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+            else
+            {
+                this.AddRoute("PUT", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+        }
+
+        public override void Post<T>(string template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition = null, string name = null)
+        {
+            if (this.isUsingTemplates)
+            {
+                this.AddTemplateRoute("POST", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+            else
+            {
+                this.AddRoute("POST", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+        }
+
+        public override void Patch<T>(string template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition = null, string name = null)
+        {
+            if (this.isUsingTemplates)
+            {
+                this.AddTemplateRoute("PATCH", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+            else
+            {
+                this.AddRoute("PATCH", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+        }
+
+        public override void Head<T>(string template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition = null, string name = null)
+        {
+            if (this.isUsingTemplates)
+            {
+                this.AddTemplateRoute("HEAD", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+            else
+            {
+                this.AddRoute("HEAD", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+        }
+
+        public override void Delete<T>(string template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition = null, string name = null)
+        {
+            if (this.isUsingTemplates)
+            {
+                this.AddTemplateRoute("DELETE", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+            else
+            {
+                this.AddRoute("DELETE", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+        }
+
+        public override void Options<T>(string template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition = null, string name = null)
+        {
+            if (this.isUsingTemplates)
+            {
+                this.AddTemplateRoute("OPTIONS", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+            else
+            {
+                this.AddRoute("OPTIONS", this.GetAbsoluteTemplate(template), action, condition, name);
+            }
+        }
+
         protected void AddTemplateRoute<T>(string method, string template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition, string name)
         {
             this.templateRoutes.Add(new TemplateRoute<T>(name ?? string.Empty, method, template, condition, action));
