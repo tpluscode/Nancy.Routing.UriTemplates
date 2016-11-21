@@ -25,7 +25,8 @@ namespace Example
                     return Response.AsJson(new
                     {
                         _.articles,
-                        _.dupa,
+                        _.seg2,
+                        _.seg3,
                         _.page,
                         _.filter
                     });
