@@ -1,5 +1,5 @@
 type project
-id Nancy.Routing.UriTemplate
+id Nancy.Routing.UriTemplates
 include-pdbs true
 excludeddependencies
   GitVersionTask
