@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nancy.Routing.UriTemplate
+namespace Nancy.Routing.UriTemplates
 {
     [Flags]
     internal enum RoutingMode

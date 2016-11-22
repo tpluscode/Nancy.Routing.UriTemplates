@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Nancy.Routing.UriTemplate
+namespace Nancy.Routing.UriTemplates
 {
     /// <summary>
     /// A Nancy module extended with support for URI Template routes

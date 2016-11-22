@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Nancy.Routing.UriTemplate
+namespace Nancy.Routing.UriTemplates
 {
     public class TemplateRoute<T> : TemplateRoute
     {

@@ -1,5 +1,5 @@
 using Nancy;
-using Nancy.Routing.UriTemplate;
+using Nancy.Routing.UriTemplates;
 
 namespace Example
 {

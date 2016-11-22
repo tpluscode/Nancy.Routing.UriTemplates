@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using FluentAssertions;
-using Nancy.Routing.UriTemplate;
 using Xunit;
 
 namespace Nancy.Routing.UriTemplates.Tests

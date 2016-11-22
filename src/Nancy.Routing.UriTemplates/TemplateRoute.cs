@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Nancy.Routing.UriTemplate
+namespace Nancy.Routing.UriTemplates
 {
     public abstract class TemplateRoute : Route
     {

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Nancy.Routing.UriTemplates;
 
-namespace Nancy.Routing.UriTemplate
+namespace Nancy.Routing.UriTemplates
 {
     public abstract class UriTemplateModule : NancyModule, IUriTemplateRouting
     {

@@ -2,7 +2,7 @@ using System;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Configuration;
-using Nancy.Routing.UriTemplate;
+using Nancy.Routing.UriTemplates;
 
 namespace Example
 {

@@ -2,7 +2,7 @@
 using System.Linq;
 using Nancy.Configuration;
 
-namespace Nancy.Routing.UriTemplate
+namespace Nancy.Routing.UriTemplates
 {
     /// <summary>
     /// Uses URI Templates (RFC6570) to resolve route to execute
