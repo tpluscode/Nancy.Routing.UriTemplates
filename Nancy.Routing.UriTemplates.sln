@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{29DA0B61-533C-4BC6-8FAD-D0A985739FE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Routing.UriTemplates.Tests", "tests\Nancy.Routing.UriTemplate.Tests\Nancy.Routing.UriTemplates.Tests.csproj", "{325C3B50-70DA-4C7F-95D1-C9A0DCCF846C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Routing.UriTemplates.Tests", "tests\Nancy.Routing.UriTemplates.Tests\Nancy.Routing.UriTemplates.Tests.csproj", "{325C3B50-70DA-4C7F-95D1-C9A0DCCF846C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Routing.UriTemplates", "src\Nancy.Routing.UriTemplates\Nancy.Routing.UriTemplates.csproj", "{52A6EE50-ED4D-4F90-A4B3-270CF971826F}"
 EndProject
