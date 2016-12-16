@@ -1,6 +1,6 @@
 ![trail icon](https://raw.githubusercontent.com/tpluscode/Nancy.Routing.UriTemplates/master/assets/noun_27516.png)
 
-# Nancy.Routing.UriTemplates [![Build status][av-badge]][build] [![NuGet version][nuget-badge]][nuget-link] [![codecov.io][cov-badge]][cov-link]
+# Nancy.Routing.UriTemplates [![Build status][av-badge]][build] [![NuGet version][nuget-badge]][nuget-link] [![codecov.io][cov-badge]][cov-link] [![codefactor][codefactor-badge]][codefactor-link]
 
 Using [URI Templates aka RFC 6570](https://tools.ietf.org/html/rfc6570) for routing in Nancy. 
 
@@ -46,3 +46,5 @@ See some discussion here: http://t-code.pl/blog/2016/11/Towards-server-side-rout
 [nuget-link]: https://badge.fury.io/nu/nancy.Routing.UriTemplates
 [cov-badge]: https://codecov.io/github/tpluscode/Nancy.Routing.UriTemplates/coverage.svg?branch=master
 [cov-link]: https://codecov.io/github/tpluscode/Nancy.Routing.UriTemplates?branch=master
+[codefactor-badge]: https://www.codefactor.io/repository/github/tpluscode/Nancy.Routing.UriTemplates/badge/master
+[codefactor-link]: https://www.codefactor.io/repository/github/tpluscode/Nancy.Routing.UriTemplates/overview/master
