@@ -1,4 +1,5 @@
 source https://www.nuget.org/api/v2/
+source https://ci.appveyor.com/nuget/uritemplatestring-anccdppl0ruy
 
 nuget fluentassertions
 nuget GitVersionTask
@@ -14,5 +15,7 @@ nuget TunnelVisionLabs.Net.UriTemplate 1.0.0-beta004 framework: >= net45
 nuget xunit 2.1.0 framework: >= net45
 nuget Nancy prerelease
 nuget StyleCop.Analyzers
+nuget UriTemplateString = 0.1.0-improvements0001
+nuget Nancy.Testing prerelease
 
 gist tpluscode/a285267d2543466fc35c3a168c846f9f

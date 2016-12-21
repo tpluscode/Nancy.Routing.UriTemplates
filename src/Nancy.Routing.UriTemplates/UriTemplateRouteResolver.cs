@@ -39,7 +39,13 @@ namespace Nancy.Routing.UriTemplates
         /// </returns>
         public ResolveResult Resolve(NancyContext context)
         {
-            var uri = new Uri(Uri.EscapeUriString(context.Request.Path + context.Request.Url.Query), UriKind.Relative);
+            var path = context.Request.Path;
+            if (path.StartsWith("/") == false)
+            {
+                path = "/" + path;
+            }
+
+            var uri = new Uri(Uri.EscapeUriString(path + context.Request.Url.Query), UriKind.Relative);
             var matches = (from module in this.moduleCatalog.GetAllModules(context).OfType<IUriTemplateRouting>()
                            from route in module.TemplateRoutes
                            where route.Description.Method.Equals(context.Request.Method, StringComparison.OrdinalIgnoreCase)
