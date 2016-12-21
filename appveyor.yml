@@ -11,11 +11,15 @@ build:
 
 configuration: Release
 
+test:
+  assemblies:
+    - Nancy.Routing.UriTemplates.Tests.*.dll
+
 after_build:
   - .paket\paket.exe pack output nugets include-referenced-projects version %GitVersion_NuGetVersion%
   
 after_test:
-  - .\packages\OpenCover\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"tests\Nancy.Routing.UriTemplates.Tests\bin\Release\Nancy.Routing.UriTemplates.Tests.dll -noshadow -appveyor" -returntargetcode -filter:"+[Nancy.Routing.UriTemplates*]* -[Nancy.Routing.UriTemplates.Tests*]* -[Test*]*" -hideskipped:All -output:.\coverage.xml
+  - .\packages\OpenCover\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"tests\Nancy.Routing.UriTemplates.Tests\bin\Release\Nancy.Routing.UriTemplates.Tests.dll tests\Nancy.Routing.UriTemplates.Tests.Functional\bin\Release\Nancy.Routing.UriTemplates.Tests.Functional.dll -noshadow -appveyor" -returntargetcode -filter:"+[Nancy.Routing.UriTemplates*]* -[Nancy.Routing.UriTemplates.Tests*]* -[Test*]*" -hideskipped:All -output:.\coverage.xml
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
   - codecov -f "coverage.xml"
