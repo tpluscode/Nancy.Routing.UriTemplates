@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UriTemplateString.Spec;
 
 namespace Nancy.Routing.UriTemplates
 {
     public abstract class UriTemplateModule : NancyModule, IUriTemplateRouting
     {
-        private static readonly Regex LastTemplateExpressionRegex = new Regex(@"(?<before>.)?(?<lastExpression>{(?<op>[?&;]?)(?<var>[\w\d_%,]+(?<explode>\*?))})$");
-
         private readonly IList<TemplateRoute> templateRoutes = new List<TemplateRoute>();
 
         private RoutingMode routingMode;
@@ -111,76 +110,56 @@ namespace Nancy.Routing.UriTemplates
             }
         }
 
-        protected void AddTemplateRoute<T>(string method, string template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition, string name)
+        protected void AddTemplateRoute<T>(string method, UriTemplateString.UriTemplateString template, Func<dynamic, CancellationToken, Task<T>> action, Func<NancyContext, bool> condition, string name)
         {
             if (this.routingMode.HasFlag(RoutingMode.Strict) == false)
             {
-                template = EnsureGreedyQueryString(template);
+                var lastPart = template.Parts.Last();
+
+                if (lastPart is Expression)
+                {
+                    var expression = (Expression)lastPart;
+                    var isQuery = expression.Operator.Equals(Operator.QueryComponent) ||
+                                  expression.Operator.Equals(Operator.QueryContinuation);
+                    var isExploded = expression.VariableList.Last().Modifier is Explode;
+
+                    if (isQuery == false || isExploded == false)
+                    {
+                        template = template.AppendQueryParam("params", true);
+                    }
+                }
+                else
+                {
+                    template = template.AppendQueryParam("params", true);
+                }
             }
 
             var absoluteTemplate = this.GetAbsoluteTemplate(template);
             this.templateRoutes.Add(new TemplateRoute<T>(name ?? string.Empty, method, absoluteTemplate, condition, action));
         }
 
-        private static string EnsureGreedyQueryString(string template)
+        private string GetAbsoluteTemplate(UriTemplateString.UriTemplateString template)
         {
-            var lastExprMatch = LastTemplateExpressionRegex.Match(template);
-
-            if (lastExprMatch.Success == false)
-            {
-                return template + "{?params*}";
-            }
-
-            if (lastExprMatch.Groups["op"].Value == string.Empty)
-            {
-                if (lastExprMatch.Groups["before"].Value == "/")
-                {
-                    return template + "{?params*}";
-                }
-
-                return template + "{&params*}";
-            }
-
-            if (lastExprMatch.Groups["explode"].Value == "*")
-            {
-                if (lastExprMatch.Groups["op"].Value == "?" || lastExprMatch.Groups["op"].Value == "&")
-                {
-                    return template;
-                }
-
-                return template + "{?params*}";
-            }
-
-            if (lastExprMatch.Groups["op"].Value == "?" || lastExprMatch.Groups["op"].Value == "&")
-            {
-                return LastTemplateExpressionRegex.Replace(template, "$1{$3$4,params*}");
-            }
-
-            return template + "{?params*}";
-        }
-
-        private string GetAbsoluteTemplate(string template)
-        {
-            var relativePath = (template ?? string.Empty).Trim('/');
             var parentPath = (this.ModulePath ?? string.Empty).Trim('/');
 
-            if (string.IsNullOrEmpty(parentPath))
+            if (template.StartsWithSlash() == false)
             {
-                return string.Concat("/", relativePath);
+                parentPath += "/";
             }
 
-            if (string.IsNullOrEmpty(relativePath))
+            if (string.IsNullOrWhiteSpace(parentPath))
             {
-                return string.Concat("/", parentPath);
+                return template.ToString();
             }
 
-            var separator = "/";
-            if (relativePath.StartsWith("{/"))
+            UriTemplateString.UriTemplateString parentTemplate = parentPath;
+
+            if (parentTemplate.StartsWithSlash() == false)
             {
-                separator = string.Empty;
+                parentTemplate = "/" + parentTemplate;
             }
 
-            return string.Concat("/", parentPath, separator, relativePath);
+            return (parentTemplate + template).ToString();
         }
 
         private class UsingTemplatesToggle : IEnableTemplateRouting

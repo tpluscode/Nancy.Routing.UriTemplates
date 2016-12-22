@@ -6,118 +6,119 @@ namespace Nancy.Routing.UriTemplates.Tests
 {
     public class UriTemplateModuleTests
     {
-        private readonly UriTemplateModule module;
-
-        public UriTemplateModuleTests()
-        {
-            this.module = new UriTemplateModuleTestable();
-        }
-
         [Fact]
         public void When_not_using_templates_Adds_ordinary_routes_when_using_routing_methods()
         {
             // when
-            this.module.Get("/", (o, o2) => null);
-            this.module.Put("/", (o, o2) => null);
-            this.module.Post("/", (o, o2) => null);
-            this.module.Patch("/", (o, o2) => null);
-            this.module.Delete("/", (o, o2) => null);
-            this.module.Head("/", (o, o2) => null);
-            this.module.Options("/", (o, o2) => null);
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            module1.Get("/", (o, o2) => null);
+            module1.Put("/", (o, o2) => null);
+            module1.Post("/", (o, o2) => null);
+            module1.Patch("/", (o, o2) => null);
+            module1.Delete("/", (o, o2) => null);
+            module1.Head("/", (o, o2) => null);
+            module1.Options("/", (o, o2) => null);
 
             // then
-            this.module.Routes.Should().HaveCount(7);
+            module1.Routes.Should().HaveCount(7);
         }
 
         [Fact]
         public void Adds_template_route_for_GET()
         {
             // when
-            using (this.module.Templates)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates)
             {
-                this.module.Get("/", (o, o2) => null);
+                module1.Get("/", (o, o2) => null);
             }
 
             // then
-            this.module.TemplateRoutes.Should().HaveCount(1);
+            module1.TemplateRoutes.Should().HaveCount(1);
         }
 
         [Fact]
         public void Adds_template_route_for_POST()
         {
             // when
-            using (this.module.Templates)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates)
             {
-                this.module.Post("/", (o, o2) => null);
+                module1.Post("/", (o, o2) => null);
             }
 
             // then
-            this.module.TemplateRoutes.Should().HaveCount(1);
+            module1.TemplateRoutes.Should().HaveCount(1);
         }
 
         [Fact]
         public void Adds_template_route_for_OPTIONS()
         {
             // when
-            using (this.module.Templates)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates)
             {
-                this.module.Options("/", (o, o2) => null);
+                module1.Options("/", (o, o2) => null);
             }
 
             // then
-            this.module.TemplateRoutes.Should().HaveCount(1);
+            module1.TemplateRoutes.Should().HaveCount(1);
         }
 
         [Fact]
         public void Adds_template_route_for_PATCH()
         {
             // when
-            using (this.module.Templates)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates)
             {
-                this.module.Patch("/", (o, o2) => null);
+                module1.Patch("/", (o, o2) => null);
             }
 
             // then
-            this.module.TemplateRoutes.Should().HaveCount(1);
+            module1.TemplateRoutes.Should().HaveCount(1);
         }
 
         [Fact]
         public void Adds_template_route_for_DELETE()
         {
             // when
-            using (this.module.Templates)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates)
             {
-                this.module.Delete("/", (o, o2) => null);
+                module1.Delete("/", (o, o2) => null);
             }
 
             // then
-            this.module.TemplateRoutes.Should().HaveCount(1);
+            module1.TemplateRoutes.Should().HaveCount(1);
         }
 
         [Fact]
         public void Adds_template_route_for_HEAD()
         {
             // when
-            using (this.module.Templates)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates)
             {
-                this.module.Head("/", (o, o2) => null);
+                module1.Head("/", (o, o2) => null);
             }
 
             // then
-            this.module.TemplateRoutes.Should().HaveCount(1);
+            module1.TemplateRoutes.Should().HaveCount(1);
         }
 
         [Fact]
         public void Adds_template_route_for_PUT()
         {
             // when
-            using (this.module.Templates)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates)
             {
-                this.module.Put("/", (o, o2) => null);
+                module1.Put("/", (o, o2) => null);
             }
 
             // then
-            this.module.TemplateRoutes.Should().HaveCount(1);
+            module1.TemplateRoutes.Should().HaveCount(1);
         }
 
         [Theory]
@@ -136,13 +137,14 @@ namespace Nancy.Routing.UriTemplates.Tests
             string actualPath)
         {
             // when
-            using (this.module.Templates)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates)
             {
-                this.module.Get(invokedPath, (o, o2) => null);
+                module1.Get(invokedPath, (o, o2) => null);
             }
 
             // then
-            this.module.TemplateRoutes.Single().Description.Path.Should().Be(actualPath);
+            module1.TemplateRoutes.Single().Description.Path.Should().Be(actualPath);
         }
 
         [Fact]
@@ -152,41 +154,44 @@ namespace Nancy.Routing.UriTemplates.Tests
             const string path = "/static/path{?some}";
 
             // when
-            using (this.module.Templates.Strict)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates.Strict)
             {
-                this.module.Get(path, (o, o2) => null);
+                module1.Get(path, (o, o2) => null);
             }
 
             // then
-            this.module.TemplateRoutes.Single().Description.Path.Should().Be(path);
+            module1.TemplateRoutes.Single().Description.Path.Should().Be(path);
         }
 
         [Fact]
         public void Adds_oridinary_route_when_Templates_is_disposed()
         {
             // when
-            using (this.module.Templates)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates)
             {
             }
 
-            this.module.Get("/", (o, o2) => null);
+            module1.Get("/", (o, o2) => null);
 
             // then
-            this.module.Routes.Should().HaveCount(1);
+            module1.Routes.Should().HaveCount(1);
         }
 
         [Fact]
         public void Adds_oridinary_route_when_Strict_Templates_is_disposed()
         {
             // when
-            using (this.module.Templates.Strict)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates.Strict)
             {
             }
 
-            this.module.Get("/", (o, o2) => null);
+            module1.Get("/", (o, o2) => null);
 
             // then
-            this.module.Routes.Should().HaveCount(1);
+            module1.Routes.Should().HaveCount(1);
         }
 
         [Theory]
@@ -195,13 +200,75 @@ namespace Nancy.Routing.UriTemplates.Tests
         public void Adds_template_path_as_is_When_query_string_wildcard_already_exists(string path)
         {
             // when
-            using (this.module.Templates)
+            UriTemplateModule module1 = new UriTemplateModuleTestable();
+            using (module1.Templates)
             {
-                this.module.Get(path, (o, o2) => null);
+                module1.Get(path, (o, o2) => null);
             }
 
             // then
-            this.module.TemplateRoutes.Single().Description.Path.Should().Be(path);
+            module1.TemplateRoutes.Single().Description.Path.Should().Be(path);
+        }
+
+        [Theory]
+        [InlineData("/base", "{route}", "/base/{route}")]
+        [InlineData("/base", "/{route}", "/base/{route}")]
+        [InlineData("/base", "{/route}", "/base{/route}")]
+        [InlineData("/base/", "{route}", "/base/{route}")]
+        [InlineData("/base/", "/{route}", "/base/{route}")]
+        [InlineData("/base/", "{/route}", "/base{/route}")]
+        public void Adds_template_concantenated_with_base_path(string basePath, string template, string route)
+        {
+            // given
+            var module = new UriTemplateModuleTestable(basePath);
+
+            // when
+            using (module.Templates.Strict)
+            {
+                module.Get(template, (o, token) => null);
+            }
+
+            // then
+            module.TemplateRoutes.Single().Description.Path.Should().Be(route);
+        }
+
+        [Theory]
+        [InlineData("base", "route", "/base/route")]
+        [InlineData("", "route", "/route")]
+        [InlineData(null, "route", "/route")]
+        [InlineData(null, "{/route}", "{/route}")]
+        public void Adds_template_always_beginning_with_slash(string basePath, string template, string route)
+        {
+            // given
+            var module = new UriTemplateModuleTestable(basePath);
+
+            // when
+            using (module.Templates.Strict)
+            {
+                module.Get(template, (o, token) => null);
+            }
+
+            // then
+            module.TemplateRoutes.Single().Description.Path.Should().Be(route);
+        }
+
+        [Theory]
+        [InlineData("{/base}", "route", "{/base}/route")]
+        [InlineData("", "{/route}", "{/route}")]
+        [InlineData(null, "{/route}", "{/route}")]
+        public void Does_not_prepend_slash_to_template_whuch_begins_with_segment_expression(string basePath, string template, string route)
+        {
+            // given
+            var module = new UriTemplateModuleTestable(basePath);
+
+            // when
+            using (module.Templates.Strict)
+            {
+                module.Get(template, (o, token) => null);
+            }
+
+            // then
+            module.TemplateRoutes.Single().Description.Path.Should().Be(route);
         }
 
         public class UriTemplateModuleTestable : UriTemplateModule
