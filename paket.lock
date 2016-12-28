@@ -18,7 +18,6 @@ NUGET
       System.Text.RegularExpressions (>= 4.1) - framework: >= netstandard10
       System.Threading (>= 4.0.11) - framework: >= netstandard10
       System.Threading.Tasks (>= 4.0.11) - framework: >= netstandard10
-    AsyncUsageAnalyzers (1.0.0-alpha003) - framework: >= net452, >= netstandard16
     FluentAssertions (4.18)
       NETStandard.Library (>= 1.6) - framework: >= netstandard13
       System.Reflection.TypeExtensions (>= 4.1) - framework: >= netstandard13
@@ -51,7 +50,7 @@ NUGET
       System.Runtime.Extensions (>= 4.3) - framework: dnxcore50, >= netstandard13
       System.Runtime.InteropServices (>= 4.3) - framework: dnxcore50, >= netstandard13
       System.Threading (>= 4.3) - framework: dnxcore50, >= netstandard13
-    Microsoft.DotNet.PlatformAbstractions (1.1) - framework: >= netstandard16
+    Microsoft.DotNet.PlatformAbstractions (1.1) - framework: >= net452, >= netstandard16
       System.AppContext (>= 4.1) - framework: >= netstandard13
       System.Collections (>= 4.0.11) - framework: >= netstandard13
       System.IO (>= 4.1) - framework: >= netstandard13
@@ -60,7 +59,7 @@ NUGET
       System.Runtime.Extensions (>= 4.1) - framework: >= netstandard13
       System.Runtime.InteropServices (>= 4.1) - framework: >= netstandard13
       System.Runtime.InteropServices.RuntimeInformation (>= 4.0) - framework: >= netstandard13
-    Microsoft.Extensions.DependencyModel (1.1) - framework: >= netstandard16
+    Microsoft.Extensions.DependencyModel (1.1) - framework: >= net452, >= netstandard16
       Microsoft.DotNet.PlatformAbstractions (>= 1.1) - framework: >= net451, netstandard13, >= netstandard16
       Newtonsoft.Json (>= 9.0.1) - framework: >= net451, netstandard13, >= netstandard16
       System.Diagnostics.Debug (>= 4.0.11) - framework: netstandard13, >= netstandard16
@@ -94,9 +93,9 @@ NUGET
       System.Runtime.Extensions (>= 4.3) - framework: >= netstandard13
       System.Runtime.Handles (>= 4.3) - framework: >= netstandard13
       System.Runtime.InteropServices (>= 4.3) - framework: >= netstandard13
-    Nancy (2.0.0-clinteastwood)
+    Nancy (2.0.0-barneyrubble)
       Microsoft.CSharp (>= 4.0.1) - framework: >= netstandard16
-      Microsoft.Extensions.DependencyModel (>= 1.0) - framework: >= netstandard16
+      Microsoft.Extensions.DependencyModel (>= 1.0) - framework: >= net452, >= netstandard16
       Microsoft.Extensions.PlatformAbstractions (>= 1.0) - framework: >= netstandard16
       System.Collections.Concurrent (>= 4.0.12) - framework: >= netstandard16
       System.Collections.Specialized (>= 4.0.1) - framework: >= netstandard16
@@ -121,17 +120,15 @@ NUGET
       System.Threading (>= 4.0.11) - framework: >= netstandard16
       System.Threading.Thread (>= 4.0) - framework: >= netstandard16
       System.Xml.XmlSerializer (>= 4.0.11) - framework: >= netstandard16
-    Nancy.Authentication.Forms (2.0.0-clinteastwood) - framework: >= net452, >= netstandard16
-      AsyncUsageAnalyzers (>= 1.0.0-alpha003) - framework: >= net452, >= netstandard16
-      Nancy (>= 2.0.0-clinteastwood) - framework: >= net452, >= netstandard16
+    Nancy.Authentication.Forms (2.0.0-barneyrubble) - framework: >= net452, >= netstandard16
+      Nancy (>= 2.0.0-barneyrubble) - framework: >= net452, >= netstandard16
     Nancy.Owin (1.4.1)
       Nancy (>= 1.4.1)
       Owin (>= 1.0)
-    Nancy.Testing (2.0.0-clinteastwood)
-      AngleSharp (>= 0.9.8.1) - framework: >= net452, >= netstandard16
-      AsyncUsageAnalyzers (>= 1.0.0-alpha003) - framework: >= net452, >= netstandard16
-      Nancy (>= 2.0.0-clinteastwood) - framework: >= net452, >= netstandard16
-      Nancy.Authentication.Forms (>= 2.0.0-clinteastwood) - framework: >= net452, >= netstandard16
+    Nancy.Testing (2.0.0-barneyrubble)
+      AngleSharp (>= 0.9.5) - framework: >= net452, >= netstandard16
+      Nancy (>= 2.0.0-barneyrubble) - framework: >= net452, >= netstandard16
+      Nancy.Authentication.Forms (>= 2.0.0-barneyrubble) - framework: >= net452, >= netstandard16
       System.Xml.XDocument (>= 4.0.11) - framework: >= netstandard16
       System.Xml.XmlDocument (>= 4.0.1) - framework: >= netstandard16
     NETStandard.Library (1.6.1) - framework: >= netstandard13

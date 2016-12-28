@@ -12,9 +12,9 @@ nuget OpenCover
 nuget Shouldly
 nuget TunnelVisionLabs.Net.UriTemplate prerelease
 nuget xunit
-nuget Nancy prerelease
+nuget Nancy = 2.0.0-barneyrubble
 nuget StyleCop.Analyzers
 nuget UriTemplateString
-nuget Nancy.Testing prerelease
+nuget Nancy.Testing = 2.0.0-barneyrubble
 
 gist tpluscode/a285267d2543466fc35c3a168c846f9f
