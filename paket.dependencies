@@ -18,3 +18,21 @@ nuget System.ComponentModel
 nuget microsoft.aspnetcore.all < 2.1
 
 gist tpluscode/a285267d2543466fc35c3a168c846f9f
+
+group tools
+    source https://nuget.org/api/v2
+    nuget Cake
+    nuget gitlink
+    nuget codecov
+    nuget gitversion.commandline prerelease
+    nuget JetBrains.dotCover.CommandLineTools
+    nuget ReportGenerator 4.0.4
+
+group addins
+    source https://nuget.org/api/v2
+    nuget cake.paket
+    nuget cake.codecov
+
+group modules
+    source https://nuget.org/api/v2
+    nuget Cake.Paket.Module
