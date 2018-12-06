@@ -1,5 +1,6 @@
 before_build:  
   - .paket\paket.exe restore
+  - dotnet --version
 
 build_script:
   - ps: .\build.ps1 -Target CI -verbosity Verbose -configuration Release
