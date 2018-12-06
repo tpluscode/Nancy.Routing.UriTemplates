@@ -4,6 +4,8 @@ before_build:
 build_script:
   - ps: .\build.ps1 -Target CI -verbosity Verbose -configuration Release
 
+test: off
+
 artifacts:
   - path: 'nugets\*.nupkg'
   - path: coverage

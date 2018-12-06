@@ -56,7 +56,7 @@ Task("Codecov")
     });
 
 Task("Test")
-    //.IsDependentOn("Build")
+    .IsDependentOn("Build")
     .Does(() => {
         if(DirectoryExists("coverage")) 
             CleanDirectories("coverage"); 
@@ -73,7 +73,11 @@ Task("Test")
         .WithFilter("+[Nancy.Routing.UriTemplates]*");
 
          DotCoverAnalyse(
-            RunTests,
+            ctx => ctx.DotNetCoreTest(GetFiles($"**\\Nancy.Routing.UriTemplates.sln").Single().FullPath, new DotNetCoreTestSettings
+                {
+                    Configuration = configuration,
+                    NoBuild = true,
+                }),
             "./coverage/dotcover.xml",
             new DotCoverAnalyseSettings {
                 ReportType = DotCoverReportType.DetailedXML,
@@ -84,19 +88,5 @@ Task("Test")
           @".\packages\tools\ReportGenerator\tools\net47\ReportGenerator.exe",
           @"-reports:.\coverage\dotcover.xml -targetdir:.\coverage -reporttypes:Cobertura;html -assemblyfilters:-UriTemplateString;-Newtonsoft.Json;-FluentAssertions;-xunit*;-Nancy.Routing.UriTemplates.Tests*");
     });
-
-public void RunTests(ICakeContext ctx) 
-{
-    var settings = new DotNetCoreTestSettings
-                {
-                    Configuration = configuration,
-                    NoBuild = true,
-                };
-
-    foreach(var project in GetFiles($"**\\Nancy.Routing.UriTemplates.Tests*.csproj"))
-    {
-        ctx.DotNetCoreTest(project.FullPath, settings);
-    }
-}
 
 RunTarget(target);
