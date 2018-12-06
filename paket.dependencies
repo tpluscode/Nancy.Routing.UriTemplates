@@ -1,20 +1,20 @@
 source https://www.nuget.org/api/v2/
 
 nuget fluentassertions
-nuget GitVersionTask
 nuget JsonLD.Entities
 nuget Microsoft.CodeDom.Providers.DotNetCompilerPlatform
 nuget Microsoft.Owin.Host.HttpListener
 nuget Microsoft.Owin.Host.SystemWeb
 nuget Microsoft.Owin.Hosting
 nuget Nancy.Owin
-nuget OpenCover
 nuget Shouldly
 nuget TunnelVisionLabs.Net.UriTemplate prerelease
 nuget xunit
-nuget Nancy = 2.0.0-barneyrubble
+nuget xunit.runner.visualstudio
 nuget StyleCop.Analyzers
 nuget UriTemplateString
-nuget Nancy.Testing = 2.0.0-barneyrubble
+nuget Nancy.Testing = 2.0.0-clinteastwood
+nuget System.ComponentModel
+nuget microsoft.aspnetcore.all < 2.1
 
 gist tpluscode/a285267d2543466fc35c3a168c846f9f

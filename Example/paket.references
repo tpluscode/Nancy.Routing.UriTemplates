@@ -1,5 +1,2 @@
-Microsoft.CodeDom.Providers.DotNetCompilerPlatform
-Microsoft.Owin.Host.SystemWeb
-Microsoft.Owin.Hosting
-Nancy.Owin
-TunnelVisionLabs.Net.UriTemplate
+nancy
+microsoft.aspnetcore.all
