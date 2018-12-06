@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <IsTestProject>false</IsTestProject>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <CodeAnalysisRuleSet>..\..\paket-files\tpluscode\a285267d2543466fc35c3a168c846f9f\NoDocumentation.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>

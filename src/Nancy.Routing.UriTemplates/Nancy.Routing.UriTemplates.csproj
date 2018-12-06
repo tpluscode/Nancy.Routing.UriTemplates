@@ -16,7 +16,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <IsTestProject>false</IsTestProject>
     <CodeAnalysisRuleSet>..\..\paket-files\tpluscode\a285267d2543466fc35c3a168c846f9f\NoDocumentation.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">
