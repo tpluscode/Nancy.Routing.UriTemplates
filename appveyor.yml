@@ -11,9 +11,6 @@ artifacts:
   - path: 'nugets\*.nupkg'
   - path: coverage
     type: zip
-
-cache:
-  - packages -> paket.lock
   
 deploy:
   - provider: Environment
