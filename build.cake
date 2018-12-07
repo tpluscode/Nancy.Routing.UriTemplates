@@ -8,8 +8,7 @@
 
 var target = Argument("target", "Build");
 var configuration = Argument("Configuration", "Debug");
-
-GitVersion version;
+var version = Argument("NuGetVersion", "");
 
 Task("CI")
     .IsDependentOn("Pack")
@@ -19,22 +18,16 @@ Task("Pack")
     .IsDependentOn("Build")
     .Does(() => {
         PaketPack("nugets", new PaketPackSettings {
-            Version = version.NuGetVersion
+            Version = version
         });
     });
 
 Task("GitVersion")
+    .WithCriteria(BuildSystem.IsLocalBuild && string.IsNullOrWhiteSpace(version))
     .Does(() => {
         version = GitVersion(new GitVersionSettings {
             UpdateAssemblyInfo = true,
-        });
-
-        if (BuildSystem.IsLocalBuild == false) 
-        {
-            GitVersion(new GitVersionSettings {
-                OutputType = GitVersionOutput.BuildServer
-            });
-        }
+        }).NuGetVersion;
     });
 
 Task("Build")
@@ -52,15 +45,7 @@ Task("Build")
 Task("Codecov")
     .IsDependentOn("Test")
     .Does(() => {
-        var buildVersion = string.Format("{0}.build.{1}",
-            version.FullSemVer,
-            BuildSystem.AppVeyor.Environment.Build.Version
-        );
-        var settings = new CodecovSettings {
-            Files = new[] { "coverage\\cobertura.xml" },
-            EnvironmentVariables = new Dictionary<string,string> { { "APPVEYOR_BUILD_VERSION", buildVersion } }
-        };
-        Codecov(settings);
+        Codecov("coverage\\cobertura.xml");
     });
 
 Task("Test")
