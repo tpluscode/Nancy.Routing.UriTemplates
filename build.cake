@@ -52,11 +52,16 @@ Task("Build")
 Task("Codecov")
     .IsDependentOn("Test")
     .Does(() => {
-        Codecov("coverage\\cobertura.xml");
+
+        var settings = new CodecovSettings {
+            Files = new[] { "coverage\\cobertura.xml" },
+            EnvironmentVariables = new Dictionary<string,string> { { "APPVEYOR_BUILD_VERSION", version.FullSemVer } }
+        };
+        Codecov(settings);
     });
 
 Task("Test")
-    //.IsDependentOn("Build")
+    .IsDependentOn("Build")
     .Does(() => {
         if(DirectoryExists("coverage")) 
             CleanDirectories("coverage"); 
