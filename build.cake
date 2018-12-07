@@ -56,37 +56,44 @@ Task("Codecov")
     });
 
 Task("Test")
-    .IsDependentOn("Build")
+    //.IsDependentOn("Build")
     .Does(() => {
         if(DirectoryExists("coverage")) 
             CleanDirectories("coverage"); 
     })
+    .Does(CoverTests("Nancy.Routing.UriTemplates.Tests"))
+    .Does(CoverTests("Nancy.Routing.UriTemplates.Tests.Functional"))
     .Does(() => {
-        var openCoverSettings = new OpenCoverSettings
-        {
-            OldStyle = true,
-            MergeOutput = true,
-            MergeByHash = true,
-            Register = "user",
-            ReturnTargetCodeOffset = 0
-        }
-        .WithFilter("+[Nancy.Routing.UriTemplates]*");
-
-         DotCoverAnalyse(
-            ctx => ctx.DotNetCoreTest(GetFiles($"**\\Nancy.Routing.UriTemplates.sln").Single().FullPath, new DotNetCoreTestSettings
-                {
-                    Configuration = configuration,
-                    NoBuild = true,
-                }),
-            "./coverage/dotcover.xml",
-            new DotCoverAnalyseSettings {
-                ReportType = DotCoverReportType.DetailedXML,
-            });
+        DotCoverMerge(GetFiles("coverage\\*.dcvr"), "coverage\\merged.dcvr");
+    })
+    .Does(() => {        
+        DotCoverReport(
+          "./coverage/merged.dcvr",
+          "./coverage/dotcover.xml",
+          new DotCoverReportSettings {
+            ReportType = DotCoverReportType.DetailedXML,
+          });
     })
     .Does(() => {
         StartProcess(
           @".\packages\tools\ReportGenerator\tools\net47\ReportGenerator.exe",
           @"-reports:.\coverage\dotcover.xml -targetdir:.\coverage -reporttypes:Cobertura;html -assemblyfilters:-UriTemplateString;-Newtonsoft.Json;-FluentAssertions;-xunit*;-Nancy.Routing.UriTemplates.Tests*");
     });
+
+public Action CoverTests(string name)
+{
+    var settings = new DotNetCoreTestSettings
+            {
+                Configuration = configuration,
+                NoBuild = true,
+            };
+
+    return () => {
+        DotCoverCover(
+          ctx => ctx.DotNetCoreTest(GetFiles($"**\\{name}.csproj").Single().FullPath, settings),
+          $"./coverage/{name}.dcvr",
+          new DotCoverCoverSettings());
+    };
+}
 
 RunTarget(target);
