@@ -12,10 +12,14 @@ var version = Argument("NuGetVersion", "");
 
 Task("CI")
     .IsDependentOn("Pack")
-    .IsDependentOn("Codecov").Does(() => {});
+    .IsDependentOn("Codecov");
 
 Task("Pack")
     .IsDependentOn("Build")
+    .IsDependentOn("_pack");
+
+Task("_pack")
+    .WithCriteria(configuration.Equals("Release", StringComparison.OrdinalIgnoreCase))
     .Does(() => {
         PaketPack("nugets", new PaketPackSettings {
             Version = version
