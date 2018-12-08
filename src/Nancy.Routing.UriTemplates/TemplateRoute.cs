@@ -7,9 +7,9 @@ namespace Nancy.Routing.UriTemplates
         protected TemplateRoute(string name, string method, string templateString, Func<NancyContext, bool> condition)
             : base(name, method, templateString, condition)
         {
-            this.Template = new TunnelVisionLabs.Net.UriTemplate(templateString);
+            this.Template = new UriTemplate.Core.UriTemplate(templateString);
         }
 
-        public TunnelVisionLabs.Net.UriTemplate Template { get; private set; }
+        public UriTemplate.Core.UriTemplate Template { get; private set; }
     }
 }

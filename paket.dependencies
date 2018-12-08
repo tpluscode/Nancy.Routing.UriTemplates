@@ -8,7 +8,7 @@ nuget Microsoft.Owin.Host.SystemWeb
 nuget Microsoft.Owin.Hosting
 nuget Nancy.Owin
 nuget Shouldly
-nuget TunnelVisionLabs.Net.UriTemplate prerelease
+nuget UriTemplate.Core
 nuget xunit
 nuget xunit.runner.visualstudio
 nuget StyleCop.Analyzers
