@@ -8,7 +8,7 @@ excludeddependencies
   System.ComponentModel 
 dependencies
   Nancy >= LOCKEDVERSION
-  TunnelVisionLabs.Net.UriTemplate >= LOCKEDVERSION
+  UriTemplate.Core >= LOCKEDVERSION
   UriTemplateString >= LOCKEDVERSION
 tags
   nancy routing uri template rfc6570
@@ -24,6 +24,6 @@ files
   bin/Release/net452/Nancy.Routing.UriTemplates.dll ==> lib/net452
   bin/Release/net452/Nancy.Routing.UriTemplates.pdb ==> lib/net452
   bin/Release/net452/Nancy.Routing.UriTemplates.xml ==> lib/net452
-  bin/Release/netstandard2.0/Nancy.Routing.UriTemplates.dll ==> lib/netstandard2.0
-  bin/Release/netstandard2.0/Nancy.Routing.UriTemplates.pdb ==> lib/netstandard2.0
-  bin/Release/netstandard2.0/Nancy.Routing.UriTemplates.xml ==> lib/netstandard2.0
+  bin/Release/netstandard1.6/Nancy.Routing.UriTemplates.dll ==> lib/netstandard1.6
+  bin/Release/netstandard1.6/Nancy.Routing.UriTemplates.pdb ==> lib/netstandard1.6
+  bin/Release/netstandard1.6/Nancy.Routing.UriTemplates.xml ==> lib/netstandard1.6
