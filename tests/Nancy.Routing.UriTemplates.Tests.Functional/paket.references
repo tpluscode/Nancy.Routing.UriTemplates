@@ -1,5 +1,5 @@
 Nancy.Testing
-GitVersionTask
 StyleCop.Analyzers
 xunit
+xunit.runner.visualstudio
 fluentassertions

@@ -1,11 +1,15 @@
-type project
+type file
 id Nancy.Routing.UriTemplates
+authors tpluscode
+description
+  URI Template (RFC 6570) routing for Nancy
 include-pdbs true
 excludeddependencies
-  GitVersionTask
+  System.ComponentModel 
 dependencies
   Nancy >= LOCKEDVERSION
-  TunnelVisionLabs.Net.UriTemplate >= LOCKEDVERSION
+  UriTemplate.Core >= LOCKEDVERSION
+  UriTemplateString >= LOCKEDVERSION
 tags
   nancy routing uri template rfc6570
 copyright 
@@ -16,3 +20,10 @@ projectUrl
   http://github.org/tpluscode/Nancy.Routing.UriTemplate
 iconUrl
   https://raw.githubusercontent.com/tpluscode/Nancy.Routing.UriTemplates/master/assets/noun_27516.png
+files
+  bin/Release/net452/Nancy.Routing.UriTemplates.dll ==> lib/net452
+  bin/Release/net452/Nancy.Routing.UriTemplates.pdb ==> lib/net452
+  bin/Release/net452/Nancy.Routing.UriTemplates.xml ==> lib/net452
+  bin/Release/netstandard1.6/Nancy.Routing.UriTemplates.dll ==> lib/netstandard1.6
+  bin/Release/netstandard1.6/Nancy.Routing.UriTemplates.pdb ==> lib/netstandard1.6
+  bin/Release/netstandard1.6/Nancy.Routing.UriTemplates.xml ==> lib/netstandard1.6

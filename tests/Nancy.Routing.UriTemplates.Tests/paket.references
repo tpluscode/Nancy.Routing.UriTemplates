@@ -1,6 +1,6 @@
 xunit
+xunit.runner.visualstudio
 StyleCop.Analyzers
-GitVersiontask
 nancy
 fluentassertions
 uritemplatestring

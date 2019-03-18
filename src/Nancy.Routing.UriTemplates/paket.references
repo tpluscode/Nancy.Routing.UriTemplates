@@ -1,5 +1,5 @@
 Nancy
-TunnelVisionLabs.Net.UriTemplate
-GitVersionTask
+UriTemplate.Core
 StyleCop.Analyzers
 UriTemplateString
+System.ComponentModel
