@@ -5,15 +5,11 @@
     <RootNamespace>Nancy.Routing.UriTemplates</RootNamespace>
     <AssemblyName>Nancy.Routing.UriTemplates</AssemblyName>
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <Description>URI Template (RFC 6570) routing for Nancy</Description>
+    <PackageTags>nancy routing uri template rfc6570</PackageTags>
+    <Company>Tomasz Pluskiewicz T+Code</Company>
+    <Authors>Tomasz Pluskiewicz</Authors>
+    <Copyright>2014-2019 Tomasz Pluskiewicz</Copyright>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>

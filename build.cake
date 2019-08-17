@@ -1,6 +1,5 @@
 #tool paket:?package=codecov
 #tool paket:?package=gitlink
-#tool paket:?package=GitVersion.CommandLine&prerelease
 #addin paket:?package=Cake.Paket
 #addin paket:?package=Cake.Codecov
 #tool paket:?package=JetBrains.dotCover.CommandLineTools
@@ -8,7 +7,6 @@
 
 var target = Argument("target", "Build");
 var configuration = Argument("Configuration", "Debug");
-var version = Argument("NuGetVersion", "");
 
 Task("CI")
     .IsDependentOn("Pack")
@@ -21,15 +19,14 @@ Task("Pack")
 Task("_pack")
     .WithCriteria(configuration.Equals("Release", StringComparison.OrdinalIgnoreCase))
     .Does(() => {
-        PaketPack("nugets");
-    });
+       var settings = new DotNetCorePackSettings {
+            MSBuildSettings = new DotNetCoreMSBuildSettings(),
+            Configuration = configuration,
+            NoBuild = true,
+            OutputDirectory = "./nugets/"
+        };
 
-Task("GitVersion")
-    .WithCriteria(BuildSystem.IsLocalBuild && string.IsNullOrWhiteSpace(version))
-    .Does(() => {
-        version = GitVersion(new GitVersionSettings {
-            UpdateAssemblyInfo = true,
-        }).NuGetVersion;
+        DotNetCorePack("nancy.routing.uritemplates.sln", settings);
     });
 
 Task("Build")
@@ -45,7 +42,6 @@ Task("Build")
 
 Task("Codecov")
     .IsDependentOn("Test")
-    .IsDependentOn("GitVersion")
     .Does(() => {
         Codecov("coverage\\cobertura.xml");
     });
