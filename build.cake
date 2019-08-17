@@ -21,9 +21,7 @@ Task("Pack")
 Task("_pack")
     .WithCriteria(configuration.Equals("Release", StringComparison.OrdinalIgnoreCase))
     .Does(() => {
-        PaketPack("nugets", new PaketPackSettings {
-            Version = version
-        });
+        PaketPack("nugets");
     });
 
 Task("GitVersion")
@@ -35,19 +33,19 @@ Task("GitVersion")
     });
 
 Task("Build")
-    .IsDependentOn("GitVersion")
     .Does(() => {
         DotNetCoreBuild("Nancy.Routing.UriTemplates.sln", new DotNetCoreBuildSettings {
             Configuration = configuration
         });
     })
-    .DoesForEach(GetFiles("**/Nancy.Routing.UriTemplates.pdb"), 
+    .DoesForEach(GetFiles("**/Nancy.Routing.UriTemplates.pdb"),
         pdb => GitLink3(pdb, new GitLink3Settings {
                 RepositoryUrl = "https://github.com/tpluscode/Nancy.Routing.UriTemplates",
             }));
 
 Task("Codecov")
     .IsDependentOn("Test")
+    .IsDependentOn("GitVersion")
     .Does(() => {
         Codecov("coverage\\cobertura.xml");
     });
@@ -55,15 +53,15 @@ Task("Codecov")
 Task("Test")
     .IsDependentOn("Build")
     .Does(() => {
-        if(DirectoryExists("coverage")) 
-            CleanDirectories("coverage"); 
+        if(DirectoryExists("coverage"))
+            CleanDirectories("coverage");
     })
     .Does(CoverTests("Nancy.Routing.UriTemplates.Tests"))
     .Does(CoverTests("Nancy.Routing.UriTemplates.Tests.Functional"))
     .Does(() => {
         DotCoverMerge(GetFiles("coverage\\*.dcvr"), "coverage\\merged.dcvr");
     })
-    .Does(() => {        
+    .Does(() => {
         DotCoverReport(
           "./coverage/merged.dcvr",
           "./coverage/dotcover.xml",
