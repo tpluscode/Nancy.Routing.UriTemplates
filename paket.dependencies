@@ -1,5 +1,7 @@
 source https://www.nuget.org/api/v2/
 
+framework: auto-detect
+
 nuget fluentassertions
 nuget JsonLD.Entities
 nuget Microsoft.CodeDom.Providers.DotNetCompilerPlatform
@@ -13,9 +15,10 @@ nuget xunit
 nuget xunit.runner.visualstudio
 nuget StyleCop.Analyzers
 nuget UriTemplateString
-nuget Nancy.Testing = 2.0.0-clinteastwood
+nuget Nancy.Testing
 nuget System.ComponentModel
 nuget microsoft.aspnetcore.all < 2.1
+nuget Nancy 2.0
 
 gist tpluscode/a285267d2543466fc35c3a168c846f9f
 

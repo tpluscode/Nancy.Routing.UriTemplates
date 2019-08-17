@@ -9,7 +9,7 @@ namespace Nancy.Routing.UriTemplates
         private readonly Func<dynamic, CancellationToken, Task<T>> action;
 
         public TemplateRoute(string name, string method, string templateString, Func<NancyContext, bool> condition, Func<dynamic, CancellationToken, Task<T>> action)
-            : base(name, method, templateString, condition)
+            : base(name, method, templateString, condition, typeof(T))
         {
             this.action = action;
         }
