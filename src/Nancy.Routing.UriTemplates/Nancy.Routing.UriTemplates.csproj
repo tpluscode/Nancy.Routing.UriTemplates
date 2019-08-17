@@ -4,7 +4,7 @@
     <Version>1.2.0</Version>
     <RootNamespace>Nancy.Routing.UriTemplates</RootNamespace>
     <AssemblyName>Nancy.Routing.UriTemplates</AssemblyName>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
     <Description>URI Template (RFC 6570) routing for Nancy</Description>
     <PackageTags>nancy routing uri template rfc6570</PackageTags>
     <Company>Tomasz Pluskiewicz T+Code</Company>
@@ -15,6 +15,7 @@
     <DebugSymbols>true</DebugSymbols>
     <CodeAnalysisRuleSet>..\..\paket-files\tpluscode\a285267d2543466fc35c3a168c846f9f\NoDocumentation.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">
     <Reference Include="Microsoft.CSharp" />
