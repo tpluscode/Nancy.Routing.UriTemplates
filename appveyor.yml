@@ -4,7 +4,7 @@ before_build:
   - ps: gitversion /l console /output buildserver /updateassemblyinfo
 
 build_script:
-  - ps: .\build.ps1 -Target CI -verbosity Diagnostic -configuration Release
+  - ps: .\build.ps1 -Target CI -verbosity Verbose -configuration Release
 
 test: off
 
