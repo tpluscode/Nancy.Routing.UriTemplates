@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.2.0</Version>
+    <Version>2.0.0</Version>
     <RootNamespace>Nancy.Routing.UriTemplates</RootNamespace>
     <AssemblyName>Nancy.Routing.UriTemplates</AssemblyName>
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
