@@ -1,6 +1,5 @@
 #tool paket:?package=codecov
 #tool paket:?package=gitlink
-#tool paket:?package=GitVersion.CommandLine&prerelease
 #addin paket:?package=Cake.Paket
 #addin paket:?package=Cake.Codecov
 #tool paket:?package=JetBrains.dotCover.CommandLineTools
@@ -8,7 +7,6 @@
 
 var target = Argument("target", "Build");
 var configuration = Argument("Configuration", "Debug");
-var version = Argument("NuGetVersion", "");
 
 Task("CI")
     .IsDependentOn("Pack")
@@ -21,27 +19,23 @@ Task("Pack")
 Task("_pack")
     .WithCriteria(configuration.Equals("Release", StringComparison.OrdinalIgnoreCase))
     .Does(() => {
-        PaketPack("nugets", new PaketPackSettings {
-            Version = version
-        });
-    });
+       var settings = new DotNetCorePackSettings {
+            MSBuildSettings = new DotNetCoreMSBuildSettings(),
+            Configuration = configuration,
+            NoBuild = true,
+            OutputDirectory = "./nugets/"
+        };
 
-Task("GitVersion")
-    .WithCriteria(BuildSystem.IsLocalBuild && string.IsNullOrWhiteSpace(version))
-    .Does(() => {
-        version = GitVersion(new GitVersionSettings {
-            UpdateAssemblyInfo = true,
-        }).NuGetVersion;
+        DotNetCorePack("nancy.routing.uritemplates.sln", settings);
     });
 
 Task("Build")
-    .IsDependentOn("GitVersion")
     .Does(() => {
         DotNetCoreBuild("Nancy.Routing.UriTemplates.sln", new DotNetCoreBuildSettings {
             Configuration = configuration
         });
     })
-    .DoesForEach(GetFiles("**/Nancy.Routing.UriTemplates.pdb"), 
+    .DoesForEach(GetFiles("**/Nancy.Routing.UriTemplates.pdb"),
         pdb => GitLink3(pdb, new GitLink3Settings {
                 RepositoryUrl = "https://github.com/tpluscode/Nancy.Routing.UriTemplates",
             }));
@@ -55,15 +49,15 @@ Task("Codecov")
 Task("Test")
     .IsDependentOn("Build")
     .Does(() => {
-        if(DirectoryExists("coverage")) 
-            CleanDirectories("coverage"); 
+        if(DirectoryExists("coverage"))
+            CleanDirectories("coverage");
     })
     .Does(CoverTests("Nancy.Routing.UriTemplates.Tests"))
     .Does(CoverTests("Nancy.Routing.UriTemplates.Tests.Functional"))
     .Does(() => {
         DotCoverMerge(GetFiles("coverage\\*.dcvr"), "coverage\\merged.dcvr");
     })
-    .Does(() => {        
+    .Does(() => {
         DotCoverReport(
           "./coverage/merged.dcvr",
           "./coverage/dotcover.xml",

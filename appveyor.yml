@@ -1,12 +1,10 @@
-image: Visual Studio 2017 Preview
-
-before_build:  
+before_build:
   - .paket\paket.exe restore
   - dotnet --version
   - ps: gitversion /l console /output buildserver /updateassemblyinfo
 
 build_script:
-  - ps: .\build.ps1 -Target CI -verbosity Verbose -configuration Release --NuGetVersion=$env:GitVersion_NuGetVersion
+  - ps: .\build.ps1 -Target CI -verbosity Verbose -configuration Release
 
 test: off
 
@@ -14,7 +12,7 @@ artifacts:
   - path: 'nugets\*.nupkg'
   - path: coverage
     type: zip
-  
+
 deploy:
   - provider: Environment
     name: NuGet
